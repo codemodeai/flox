@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FLOX Logo</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 60px;
+      font-family: system-ui;
+    }
+
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    svg text {
+      font-family: 'Arial Black', 'Impact', sans-serif;
+    }
+
+    /* Variants label */
+    .label {
+      color: #555;
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .variant { display: flex; flex-direction: column; align-items: center; }
+  </style>
+</head>
+<body>
+
+  <!-- ── Full logo on black ── -->
+  <div class="variant">
+    <p class="label">Primary — on black</p>
+    <div class="logo-wrap">
+      <svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- X gradient: purple top-left → blue bottom-right -->
+          <linearGradient id="xGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stop-color="#9333ea" />
+            <stop offset="50%"  stop-color="#7c3aed" />
+            <stop offset="100%" stop-color="#3b82f6" />
+          </linearGradient>
+          <!-- Subtle inner shadow filter -->
+          <filter id="glow">
+            <feGaussianBlur stdDeviation="2.5" result="blur"/>
+            <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+          </filter>
+        </defs>
+
+        <!-- FLO — white, bold italic -->
+        <text
+          x="12" y="92"
+          font-size="96"
+          font-weight="900"
+          font-style="italic"
+          fill="white"
+          letter-spacing="-4"
+        >FLO</text>
+
+        <!-- X — gradient, bold italic, slightly larger feel -->
+        <text
+          x="278" y="92"
+          font-size="96"
+          font-weight="900"
+          font-style="italic"
+          fill="url(#xGrad)"
+          letter-spacing="-4"
+          filter="url(#glow)"
+        >X</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── White bg variant ── -->
+  <div class="variant">
+    <p class="label">On white background</p>
+    <div class="logo-wrap" style="background:#fff; padding: 24px 40px; border-radius: 20px;">
+      <svg width="360" height="100" viewBox="0 0 360 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="xGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stop-color="#9333ea" />
+            <stop offset="50%"  stop-color="#7c3aed" />
+            <stop offset="100%" stop-color="#3b82f6" />
+          </linearGradient>
+        </defs>
+        <text x="8" y="80" font-size="82" font-weight="900" font-style="italic" fill="#111" letter-spacing="-3">FLO</text>
+        <text x="250" y="80" font-size="82" font-weight="900" font-style="italic" fill="url(#xGrad2)" letter-spacing="-3">X</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── Small / icon size ── -->
+  <div class="variant">
+    <p class="label">Small — 48px</p>
+    <div class="logo-wrap">
+      <svg width="160" height="48" viewBox="0 0 160 48" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="xGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%"   stop-color="#9333ea" />
+            <stop offset="100%" stop-color="#3b82f6" />
+          </linearGradient>
+        </defs>
+        <text x="4" y="38" font-size="38" font-weight="900" font-style="italic" fill="white" letter-spacing="-1.5">FLO</text>
+        <text x="112" y="38" font-size="38" font-weight="900" font-style="italic" fill="url(#xGrad3)" letter-spacing="-1.5">X</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- ── Download SVG button ── -->
+  <div style="display:flex; gap:16px; margin-top:8px;">
+    <a
+      href="#"
+      onclick="downloadSVG()"
+      style="background:#7c3aed; color:#fff; padding:12px 28px; border-radius:12px; text-decoration:none; font-size:13px; font-weight:600; cursor:pointer;"
+    >
+      ↓ Download SVG
+    </a>
+  </div>
+
+  <script>
+    function downloadSVG() {
+      const svgContent = `<svg width="400" height="120" viewBox="0 0 400 120" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="xGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9333ea"/>
+      <stop offset="50%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#3b82f6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="120" fill="#000"/>
+  <text x="12" y="92" font-size="96" font-weight="900" font-style="italic" fill="white" letter-spacing="-4" font-family="Arial Black, Impact, sans-serif">FLO</text>
+  <text x="278" y="92" font-size="96" font-weight="900" font-style="italic" fill="url(#xGrad)" letter-spacing="-4" font-family="Arial Black, Impact, sans-serif">X</text>
+</svg>`;
+      const blob = new Blob([svgContent], { type: 'image/svg+xml' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'flox-logo.svg';
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  </script>
+
+</body>
+</html>
